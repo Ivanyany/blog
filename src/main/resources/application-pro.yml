@@ -1,0 +1,22 @@
+spring:
+  datasource:
+#     数据源基本配置
+      username: root
+      password: 123456
+      url: jdbc:mysql://localhost:3306/blog?serverTimezone=UTC
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    cache: false
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
+logging:
+  level:
+    root: warn
+    com.ivan: info
+  file: log/blog-pro.log
+
+server:
+  port: 8081

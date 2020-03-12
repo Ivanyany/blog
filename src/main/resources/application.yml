@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  thymeleaf:
+    mode: HTML
+    cache: false
+  profiles:
+    active: dev  #指定配置文件
+  messages:
+    basename: i18n/messages
+
+#fastDFS文件服务器
+fdfs:
+  so-timeout: 1501
+  connect-timeout: 601
+  thumb-image:
+    width: 80
+    height: 80
+  tracker-list[0]: 47.99.172.18:22122
+
+
+comment.avatar: /images/avatar.jpg
+server.url: http://www.ivany.cn/
+

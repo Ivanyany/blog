@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments :: head(~{::title})">
+    <title>关于我</title>
+</head>
+<body>
+
+    <!-- 导航 -->
+    <nav th:replace="_fragments :: menu(5)"><!--m-shadow-small:导航加阴影-->
+    </nav>
+
+    <!-- 中间内容 -->
+    <div class="m-container m-padded-tb-big">
+        <div class="ui container">
+            <div class="ui stackable grid">
+                <div class="eleven wide column">
+                    <div class="ui segment">
+                        <img src="" th:src="@{/images/me.jpg}" alt="" class="ui rounded image">
+                    </div>
+                </div>
+                <div class="five wide column">
+                    <div class="ui top attached segment">
+                        <div class="ui header">关于我</div>
+                    </div>
+                    <div class="ui attached segment">
+                        <p class="m-text-thin">伊凡：Hello大家好，欢迎光临我的博客，这里有很多有趣的东西...</p>
+                        <p class="m-text-thin">喜欢编程，探讨技术...</p>
+                    </div>
+                    <div class="ui attached segment">
+                        <div class="ui orange basic left pointing label">编程</div>
+                        <div class="ui orange basic left pointing label">思考</div>
+                        <div class="ui orange basic left pointing label">运动</div>
+                        <div class="ui orange basic left pointing label">写作</div>
+                    </div>
+                    <div class="ui attached segment">
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny" th:each="type : ${types}" th:text="${type.name}"></div>
+                    </div>
+                    <div class="ui bottom attached segment">
+                        <a href="https://github.com/Ivanyany" target="_blank" class="ui circular icon button"><i class="github icon"></i></a>
+                        <p class="ui wechat circular icon button"><i class="weixin icon"></i></p><!--下方弹出微信二维码-->
+                        <!--<p class="ui qq circular icon button"><i class="qq icon"></i></p>&lt;!&ndash;下方弹出qq二维码&ndash;&gt;-->
+
+                        <!--下方弹出qq号码-->
+                        <p class="ui qq circular icon button" data-content="754339948" data-position="bottom center"><i class="qq icon"></i></p>
+                    </div>
+
+                    <!--微信二维码-->
+                    <div class="ui wechatQR flowing popup transition hidden"><!--鼠标放在微信图标上时弹出二维码-->
+                        <img src="" th:src="@{/images/weixin.png}" alt="" class="ui rounded image" style="width: 110px;!important;">
+                    </div>
+                    <!--qq二维码-->
+                    <!--<div class="ui qqQR flowing popup transition hidden">&lt;!&ndash;鼠标放在qq图标上时弹出二维码&ndash;&gt;-->
+                        <!--<img src="" th:src="@{/images/qq.png}" alt="" class="ui rounded image" style="width: 110px;!important;">-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <br>
+    <br>
+
+    <!-- 底部footer -->
+    <footer th:replace="_fragments :: footer">
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <th:block th:replace="_fragments :: script">
+    </th:block>
+
+    <script>
+        //下方弹出微信二维码
+        $(".wechat").popup({
+            popup : $(".wechatQR"),
+            on : "hover",
+            position : "bottom center"
+        });
+        //下方弹出qq二维码
+        // $(".qq").popup({
+        //     popup : $(".qqQR"),
+        //     on : "hover",
+        //     position : "right center"
+        // });
+
+        //下方弹出qq号码
+        $(".qq").popup();
+    </script>
+</body>
+</html>

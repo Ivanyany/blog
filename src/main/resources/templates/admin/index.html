@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <title>博客管理首页</title>
+</head>
+<body>
+
+    <!-- 导航 -->
+    <nav th:replace="admin/_fragments :: menu(0)"><!--m-shadow-small:导航加阴影-->
+    </nav>
+
+    <!--中间内容-->
+    <div  class="m-container-small m-padded-tb-big">
+        <div class="ui container">
+            <div class="ui success large  message">
+                <p>Ivan，欢迎登录！</p>
+            </div>
+            <img src="" th:src="@{/images/me.jpg}" alt="" class="ui rounded bordered fluid image">
+        </div>
+    </div>
+
+    <!-- 底部footer -->
+    <footer th:replace="_fragments :: footer">
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <th:block th:replace="_fragments :: script">
+    </th:block>
+
+    <script>
+
+        $(".ui.dropdown").dropdown({
+            on : "hover"
+        });
+    </script>
+</body>
+</html>

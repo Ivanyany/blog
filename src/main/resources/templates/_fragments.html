@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <!--    <link rel="stylesheet" href="static/css/typo.css" th:href="@{/css/typo.css}">--><!-- 中文排版插件样式 -->
+    <link rel="stylesheet" href="../static/css/animate.css" th:href="@{/css/animate.css}"><!-- 动画插件样式 -->
+    <link rel="stylesheet" href="../static/lib/prism/prism.css" th:href="@{/lib/prism/prism.css}"><!-- 代码高亮插件样式 -->
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}"><!-- 生成目录插件样式 -->
+    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}"><!-- 自定义样式 -->
+    <title th:replace="${title}"></title>
+</head>
+<body>
+
+<!-- 导航 -->
+<nav th:fragment="menu(n)" class="ui inverted attached segment m-padded-tb-mini">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu"><!-- stackable:手机端相应式布局 -->
+            <h2 class="ui teal header item">伊凡客</h2>
+            <a href="index.html" th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="mini home icon"></i>首页</a><!-- m-mobile-hide:移动端隐藏 -->
+            <a href="types.html" th:href="@{/types/-1}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="mini idea icon"></i>分类</a>
+            <a href="tags.html" th:href="@{/tags/-1}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="mini tags icon"></i>标签</a>
+            <a href="archives.html" th:href="@{/archives}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="mini clone icon"></i>归档</a>
+            <a href="about.html" th:href="@{/about}" class="m-item item m-mobile-hide" th:classappend="${n==5} ? 'active'"><i class="mini info icon"></i>关于我</a>
+            <div class="right m-item item m-mobile-hide">
+                <form name="search" action="#" th:action="@{/search}" method="post" target="_blank">
+                    <div class="ui icon inverted transparent input m-margin-tb-tiny">
+                        <input type="text" name="query" placeholder="Search...." th:value="${query}">
+                        <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show"><!-- 在手机端显示时将菜单栏隐藏,通过点击这个按钮时才显示 -->
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+
+<!-- 底部footer -->
+<footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-massive">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <div class="three wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <img src="../static/images/weixin.png" th:src="@{/images/weixin.png}" class="ui rounded image" alt="" style="width: 110px;">
+                    </div>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced">最新博客</h4>
+                <div id="newblog-container">
+                    <div class="ui inverted link list" th:fragment="newblogList">
+                        <a href="" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="item m-text-thin" th:each="blog : ${newblogs}" th:text="${blog.title}"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="https://mail.qq.com/" target="_blank" class="item" th:text="#{index.email}"></a>
+                    <p class="item" th:text="#{index.qq}" disabled="true"></p>
+                </div>
+            </div>
+            <div class="seven wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced">伊凡客</h4>
+                <p class="m-text-thin m-text-spaced m-opacity-mini">这是我的个人博客，我会在这里分享我的学习、编程、写作、思考相关的内容...</p>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2019-2020 Designed By Ivan</p>
+        <a target="_blank" href="http://beian.miit.gov.cn/" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+            <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">蜀icp备20001512号-1</p>
+        </a>
+        &nbsp;&nbsp;
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51011202000314" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+            <img src="../static/images/beian.png" th:src="@{/images/beian.png}" style="float:left;"/>
+            <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">川公网安备 51011202000314号</p>
+        </a>
+    </div>
+</footer>
+
+<th:block th:fragment="script">
+    <script>
+        //打包时需要
+        // $('#newblog-container').load(/*[[@{/footer/newblog}]]*/"/blog/footer/newblog");
+        //本地调试时需要
+        $('#newblog-container').load(/*[[@{/footer/newblog}]]*/"/footer/newblog");
+
+        $('.menu.toggle').click(function () {
+            $('.m-item').toggleClass('m-mobile-hide');
+        });
+    </script>
+</th:block>
+
+</body>
+</html>
