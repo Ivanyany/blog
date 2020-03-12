@@ -2,8 +2,8 @@ spring:
   datasource:
 #     数据源基本配置
       username: root
-      password: 123456
-      url: jdbc:mysql://47.99.172.18:3306/blog?serverTimezone=GMT%2B8 # UTC
+      password: ****** # 数据库密码
+      url: jdbc:mysql://*.*.*.*:3306/blog?serverTimezone=GMT%2B8 # *.*.*.*阿里云服务器地址 GMT%2B8或者UTC
       driver-class-name: com.mysql.cj.jdbc.Driver
   thymeleaf:
     cache: false

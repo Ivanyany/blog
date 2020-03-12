@@ -17,7 +17,7 @@ fdfs:
   thumb-image:
     width: 80
     height: 80
-  tracker-list[0]: 47.99.172.18:22122
+  tracker-list[0]: *.*.*.*:22122 # 阿里云服务器地址
 
 
 comment.avatar: /images/avatar.jpg
